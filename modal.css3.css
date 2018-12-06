@@ -1,0 +1,68 @@
+#rdp-modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1.0);
+    transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+    z-index: 999;
+}
+#rdp-modal.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.1);
+    transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+#rdp-modal.displaynone {
+    display: none;
+}
+
+#rdp-modal .hidden  {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+}
+
+#rdp-modal .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 1rem 1.5rem;
+    width: 60rem;
+    height: 60rem;
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 0.5rem;
+}
+
+#rdp-modal .close {
+    position: absolute;
+    right: 1em;
+    text-align: center;
+    cursor: pointer;
+    color: #aaa;
+}
+#rdp-modal .close:hover {
+    color: #910000;
+}
+
+#rdp-modal .frame {
+    width: 100%;
+    height: 100%;
+}
+
+#rdp-modal iframe {
+    border: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+}
+#rdp-modal iframe.hidden {
+    opacity: 0;
+}
