@@ -117,7 +117,7 @@ var RDPModal = (function() {
         toggle: m.fn.toggle,
         pay: function () {
             m.fn.open();
-            m.frame.src = 'https://google.com';
+            m.frame.src = 'http://connect.reddotpay.sg';
         }
     };
 })();

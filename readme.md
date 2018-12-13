@@ -2,6 +2,10 @@
 
 Allows the Red Dot Payment (RDP) hosted payment and card capture page to be embedded to an HTML page.
 
+## Example
+
+- [example.html](https://reddotpay.github.io/rdp-modal/example.html)
+
 ## Usage
 
 ~~~
@@ -23,7 +27,7 @@ Allows the Red Dot Payment (RDP) hosted payment and card capture page to be embe
 </html>
 ~~~
 
-## Open-source:
+## Open-source
 
 1. Support only modern browsers
 2. Do not add any library dependencies
