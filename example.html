@@ -85,7 +85,18 @@
                             <h6 class="my-0">Promo code</h6>
                             <small>EXAMPLECODE</small>
                         </div>
-                        <span class="text-success">-$2</span>
+                        <span class="text-success">
+                            <span id="promoCode">
+                                -$2
+                            </span>
+                        </span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <h6 class="my-0">Payment Reference</h6>
+                            <small class="text-muted"></small>
+                        </div>
+                        <span class="text-muted"><span id="paymentRef"></span></span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Total (USD)</span>
@@ -101,7 +112,6 @@
                         </div>
                     </div>
                 </form>
-
                 <hr class="mb-4"/>
                 <button type="button" class="btn btn-success btn-lg btn-block" id="pay">Pay</button> 
             </div>
@@ -115,7 +125,6 @@
             </ul>
         </footer>
     </div>
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -123,8 +132,27 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="src/modal.js"></script>
     <script type="text/javascript">
+        document.getElementById("paymentRef").innerText = makeId();
+        let email = "user@domain.com";
+        let currency = "SGD";    
+        function makeId() {
+            var text = "";
+            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            for (var i = 0; i < 10; i++)
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+            return text;
+        }
         document.getElementById('pay').addEventListener('click', function (e) {
-            RDPModal.pay();
+            RDPModal.pay({
+                mid: "97cc8b3f-ccf8-42ac-8f88-742d75e5562c",
+                payload: {
+                    amount: 37.76,
+                    currency: currency.toString(),
+                    email: email.toString(),
+                    promotion: Math.abs(Number(document.getElementById("promoCode").innerText.replace(/[^0-9.-]+/g,""))),
+                    orderId: document.getElementById("paymentRef").innerText
+                }
+            });
         });
     </script>
   </body>

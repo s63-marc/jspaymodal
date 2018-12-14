@@ -115,9 +115,73 @@ var RDPModal = (function() {
     
     return {
         toggle: m.fn.toggle,
-        pay: function () {
+        pay: function ( options ) {
             m.fn.open();
-            m.frame.src = 'http://connect.reddotpay.sg';
+
+            if ( typeof options != "object") {
+                throw new Error("options are invalid, must pass an object");
+            }
+
+            if ( options.mid == undefined ) {
+                throw new Error("mid is required");
+            }
+
+            if ( typeof options != "object" || options.payload == undefined ) {
+                throw new Error("payload is required");
+            } else {
+                if ( options.payload.amount == undefined )
+                    throw new Error("amount in payload is required");
+                if ( options.payload.currency == undefined )
+                    throw new Error("currency in payload is required");
+                if ( options.payload.email == undefined )
+                    throw new Error("email in payload is required");
+                if ( options.payload.promotion == undefined )
+                    options.payload.promotion = 0;
+                if ( options.payload.orderId == undefined )
+                    throw new Error("orderId in payload is required");
+            }
+
+            fetch(
+                `https://api-pay-redirect.herokuapp.com/api/v1/payments/token/${options.mid}`,
+                {
+                  method: "POST",
+                  credentials: "same-origin",
+                  mode: "cors",
+                  headers: {
+                    "Content-Type": "application/json; charset=utf-8"
+                    // "Content-Type": "application/x-www-form-urlencoded",
+                  },
+                  body: JSON.stringify(options.payload)
+                }
+              )
+              .then(response => {
+                return response.json();
+              })
+              .then(data => {
+            
+                // Pass the hosted-page passing the `data.token` (response from the previous fetch call) as the parameter
+            
+                // Local development url
+                // newTab.location.href = `http://localhost:8080/pay/${data.token}`;
+            
+                // Remote development environment or your production env
+                // console.log(data)
+                // newTab.location.href = 
+
+                m.frame.src = `http://localhost:8080/pay/${data.token}`;
+            
+              })
+              .catch(function(error) {
+                // Handle errors here
+                status.innerText = error.message;
+                console.log(
+                  "There has been a problem with your fetch operation: ",
+                  error.message
+                );
+              })
+              .finally(() => {
+                // check for payment status here...
+              });
         }
     };
 })();

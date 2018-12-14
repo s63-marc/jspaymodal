@@ -1,4 +1,4 @@
-# RDP Modal
+# RDP Javascript Pay Modal
 
 Allows the Red Dot Payment (RDP) hosted payment and card capture page to be embedded to an HTML page.
 
@@ -20,7 +20,16 @@ Allows the Red Dot Payment (RDP) hosted payment and card capture page to be embe
     <script src="src/modal.js"></script>
     <script type="text/javascript">
         document.getElementById('pay').addEventListener('click', function (e) {
-            RDPModal.pay();
+            RDPModal.pay({
+                mid: "00000000-0000-0000-0000-000000000000",
+                payload: {
+                    amount: 37.76,
+                    currency: "SGD",
+                    email: "someone@email.com",
+                    promotion: "promocode",
+                    orderId: "CUSTOMMERCHANTID123456"
+                }
+            });
         });
     </script>
   </body>
