@@ -4,7 +4,7 @@ Allows the Red Dot Payment (RDP) hosted payment and card capture page to be embe
 
 ## Example
 
-- [example.html](https://reddotpay.github.io/rdp-modal/example.html)
+- [example.html](https://reddotpay.github.io/jspaymodal/example.html)
 
 ## Usage
 
