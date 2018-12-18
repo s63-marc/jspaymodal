@@ -168,7 +168,7 @@ var RDPModal = (function() {
                 // console.log(data)
                 // newTab.location.href = 
 
-                m.frame.src = `http://localhost:8080/pay/${data.token}`;
+                m.frame.src = `https://connect.reddotpay.sg/m/${options.mid}#/pay/${data.token}`;
             
               })
               .catch(function(error) {
