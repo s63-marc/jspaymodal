@@ -27,7 +27,7 @@ Allows the Red Dot Payment (RDP) hosted payment and card capture page to be embe
                     currency: "SGD",
                     email: "someone@email.com",
                     promotion: "promocode",
-                    orderId: "CUSTOMMERCHANTID123456"
+                    orderId: "OID" + (new Date()).getTime() // Must be unique
                 }
             });
         });
