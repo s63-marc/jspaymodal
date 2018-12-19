@@ -15,7 +15,7 @@ var RDPModal = (function() {
         };
         
         for (i in transitions) {
-            if (el.hasOwnProperty(i) || el.style.hasOwnProperty(i)) {
+            if (el.hasOwnProperty(i) || el.style.hasOwnProperty(i) || i in el.style) {
                 return {'start': transitions[i][0], 'end': transitions[i][1]};
             }
         }
