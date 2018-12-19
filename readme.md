@@ -2,6 +2,10 @@
 
 Allows the Red Dot Payment (RDP) hosted payment and card capture page to be embedded to an HTML page.
 
+## Limitation
+
+- Supports ONLY modern browsers (Google Chrome, Firefox, Microsoft Edge, Safari, Opera). To validate the end-users browsers, [outdatedbrowser.com](http://outdatedbrowser.com/en/how) offers a library.
+
 ## Example
 
 - [example.html](https://reddotpay.github.io/jspaymodal/example.html)
