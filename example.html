@@ -140,7 +140,8 @@
                 'af8fed75-3fc4-49d5-a6bb-59d658f49465', 
                 el('totalAmount').innerText.substring(1),
                 'SGD',
-                { promo: el('promoCode').value }
+                { promo: el('promoCode').value },
+                e => { console.log(e) }
             );
         });
     </script>
