@@ -156,6 +156,7 @@ const RDP = (() => {
                 body: JSON.stringify(options)
             })
             .then(res => {
+                console.log(res);
                 return res.json();
             });
         }
