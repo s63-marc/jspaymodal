@@ -13,12 +13,14 @@ Allows the Red Dot Payment (RDP) hosted payment and card capture page to be embe
 ## Usage
 
 ### modal
-~~~
+
+index.html
+~~~HTML
 <!doctype html>
 <html lang="en">
   <head>
     ...
-    <!-- Use an optional -->
+    <!-- Specify a spinner (preloader) style -->
     <link rel="stylesheet" type="text/css" media="screen,print" href="https://reddotpay.github.io/jspay/modal.loader2.css3.css">
   </head>
   <body>
@@ -35,11 +37,11 @@ Allows the Red Dot Payment (RDP) hosted payment and card capture page to be embe
         // RDP.domain = 'https://connect.reddotpay.com';
         document.getElementById('pay').addEventListener('click', function (e) {
             RDP.modal.pay(
-                "OID" + (new Date()).getTime(), // Order ID
-                "00000000-0000-0000-0000-000000000000", // Merchant ID
+                'OID' + (new Date()).getTime(), // Order ID
+                '00000000-0000-0000-0000-000000000000', // Merchant ID
                 37.76, // Amount
-                "SGD", // SGD
-                { promo: "HAPPYNEWYEAR01" } // Other details
+                'SGD', // SGD
+                { promo: 'HAPPYNEWYEAR01' } // Other details
             );
         });
     </script>
