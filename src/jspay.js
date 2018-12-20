@@ -184,8 +184,8 @@ const RDP = (() => {
             const pay = new Pay(merchant, lib.authDomain);
             return pay
                 .do(id, amount, currency, options)
-                .then(auth => { okFn(lib.domain + '/m/'+merchant+'#/pay/' + auth.token); })
-                .catch(e => console.log(e));
+                .then(auth => { okFn(lib.domain + '/m/'+merchant+'#/pay/' + auth.token) })
+                .catch(e => { console.log(e) });
         }
     };
 
