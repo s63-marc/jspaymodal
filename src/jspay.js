@@ -179,19 +179,24 @@ const RDP = (() => {
                 failFn = failFn ? failFn : () => {}
                 modal.open();
                 return lib
-                    .callback(id, merchant, amount, currency, options, src => { modal.frame.setAttribute('src', src) })
+                    .pay(id, merchant, amount, currency, options)
+                    .then((src, auth) => {
+                        modal.frame.setAttribute('src', src);
+                        console.log(auth);
+                        return (src, auth);
+                    })
                     .catch(e => { 
-                        failFn(e);
                         modal.close();
+                        throw e;
                     });
             },
         },
 
-        callback(id, merchant, amount, currency, options, okFn) {
+        pay(id, merchant, amount, currency, options) {
             const pay = new Pay(merchant, lib.authDomain);
             return pay
                 .do(id, amount, currency, options)
-                .then(auth => { okFn(lib.domain + '/m/'+merchant+'#/pay/' + auth.token) });
+                .then(auth => { return (lib.domain + '/m/'+merchant+'#/pay/' + auth.token, auth); });
         }
     };
 
