@@ -177,9 +177,9 @@ const RDP = (() => {
 
             pay: (id, merchant, amount, currency, options) => {
                 modal.open();
-                return lib.callback(id, merchant, amount, currency, options, src => {
-                    modal.frame.setAttribute('src', src);
-                });
+                return lib
+                    .callback(id, merchant, amount, currency, options, src => { modal.frame.setAttribute('src', src) })
+                    .catch(e => { modal.close() });
             },
         },
 
@@ -187,8 +187,7 @@ const RDP = (() => {
             const pay = new Pay(merchant, lib.authDomain);
             return pay
                 .do(id, amount, currency, options)
-                .then(auth => { okFn(lib.domain + '/m/'+merchant+'#/pay/' + auth.token) })
-                .catch(e => { console.log(e) });
+                .then(auth => { okFn(lib.domain + '/m/'+merchant+'#/pay/' + auth.token) });
         }
     };
 
