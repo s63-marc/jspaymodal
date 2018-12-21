@@ -175,8 +175,7 @@ const RDP = (() => {
                 modal = new Modal('rdp-modal', css ? css: 'https://reddotpay.github.io/jspay/modal.css3.css');
             },
 
-            pay: (id, merchant, amount, currency, options, failFn) => {
-                failFn = failFn ? failFn : () => {}
+            pay: (id, merchant, amount, currency, options) => {
                 modal.open();
                 return lib
                     .pay(id, merchant, amount, currency, options)
