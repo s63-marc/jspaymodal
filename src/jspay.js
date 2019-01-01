@@ -195,7 +195,13 @@ const RDP = (() => {
             const pay = new Pay(merchant, lib.authDomain);
             return pay
                 .do(id, amount, currency, options)
-                .then(auth => { return (lib.domain + '/m/'+merchant+'#/pay/' + auth.token, auth); });
+                .then(auth => {
+                    if (!auth || !auth.token) {
+                        throw Error("0: auth token is empty");
+                    }
+                    
+                    return (lib.domain + '/m/'+merchant+'#/pay/' + auth.token, auth);
+                });
         }
     };
 
