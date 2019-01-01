@@ -148,7 +148,7 @@ const RDP = (() => {
             options['amount'] = amount;
             options['currency'] = currency;
 
-            return fetch(this.authDomain + '/api/v1/payments/token/' + this.merchant, {
+            return fetch(this.authDomain + '/payments/token/' + this.merchant, {
                 method: 'POST',
                 credentials: 'same-origin',
                 mode: 'cors',
@@ -167,7 +167,7 @@ const RDP = (() => {
     let modal;
 
     const lib = {
-        authDomain: 'https://connect.api.reddotpay.sg',
+        authDomain: 'https://connect.api.reddotpay.sg/v1',
         domain: 'https://connect.reddotpay.sg',
 
         modal: {
