@@ -167,7 +167,7 @@ const RDP = (() => {
     let modal;
 
     const lib = {
-        authDomain: 'https://api-pay-redirect.herokuapp.com',
+        authDomain: 'https://connect.api.reddotpay.sg',
         domain: 'https://connect.reddotpay.sg',
 
         modal: {
