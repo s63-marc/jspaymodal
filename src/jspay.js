@@ -196,6 +196,7 @@ const RDP = (() => {
             return pay
                 .do(id, amount, currency, options)
                 .then(auth => {
+                    console.log(auth);
                     if (!auth || !auth.token) {
                         throw Error("0: auth token is empty");
                     }
