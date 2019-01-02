@@ -179,11 +179,9 @@ const RDP = (() => {
                 modal.open();
                 return lib
                     .pay(id, merchant, amount, currency, options)
-                    .then((src, auth) => {
-                        console.log(src, auth);
-                        modal.frame.setAttribute('src', src);
-                        console.log(auth);
-                        return (src, auth);
+                    .then(auth => {
+                        modal.frame.setAttribute('src', auth.payUrl);
+                        return auth;
                     })
                     .catch(e => { 
                         modal.close();
@@ -200,8 +198,9 @@ const RDP = (() => {
                     if (!auth || !auth.token) {
                         throw Error("0: auth token is empty");
                     }
-                    console.log(lib.domain + '/m/'+merchant+'#/pay/' + auth.token, auth);
-                    return lib.domain + '/m/'+merchant+'#/pay/' + auth.token, auth;
+
+                    auth.payUrl = lib.domain + '/m/'+merchant+'#/pay/' + auth.token;
+                    return auth;
                 });
         }
     };

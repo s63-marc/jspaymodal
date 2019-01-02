@@ -65,11 +65,11 @@ Attach callbacks to various events when doing a payment
       'SGD', // SGD
       { promo: 'HAPPYNEWYEAR01' } // Other details
   )
-  .then((src, auth) => {
-    console.log('Display full payment URL:');
-    console.log(src);
+  .then(auth => {
     console.log('Auth response:');
     console.log(auth);
+    console.log('Display full payment URL:');
+    console.log(auth.payUrl);
   })
   .catch(e => {
     console.log(e.message);
@@ -101,8 +101,8 @@ Create your own payment flow
             'SGD', // SGD
             { promo: 'HAPPYNEWYEAR01' } // Other details
         )
-        .then((src, auth) => {
-          document.getElementById('paymentForm').src = src;
+        .then(auth => {
+          document.getElementById('paymentForm').src = auth.payUrl;
         })
         .catch(e => {
           console.log(e.message);
