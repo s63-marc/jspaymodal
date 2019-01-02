@@ -199,8 +199,8 @@ const RDP = (() => {
                     if (!auth || !auth.token) {
                         throw Error("0: auth token is empty");
                     }
-                    
-                    return (lib.domain + '/m/'+merchant+'#/pay/' + auth.token, auth);
+
+                    return lib.domain + '/m/'+merchant+'#/pay/' + auth.token, auth;
                 });
         }
     };
