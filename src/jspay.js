@@ -142,7 +142,7 @@ const RDP = (() => {
             this.merchant = merchant;
         }
 
-        do(id, amount, currency, options) {
+        do(accessToken, id, amount, currency, options) {
             if ('object' != options) options = {};
             options['orderId'] = id;
             options['amount'] = amount;
@@ -152,7 +152,10 @@ const RDP = (() => {
                 method: 'POST',
                 credentials: 'same-origin',
                 mode: 'cors',
-                headers: { 'Content-Type': 'application/json; charset=utf-8' },
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8',
+                    'Authorization': accessToken
+                },
                 body: JSON.stringify(options)
             })
             .then(res => {
@@ -170,15 +173,34 @@ const RDP = (() => {
         authDomain: 'https://connect.api.reddotpay.sg/v1',
         domain: 'https://connect.reddotpay.sg',
 
+        auth: (client, secret) => {
+            return fetch(this.authDomain + '/authenticate', {
+                method: 'POST',
+                credentials: 'same-origin',
+                mode: 'cors',
+                headers: { 'Content-Type': 'application/json; charset=utf-8' },
+                body: JSON.stringify({
+                    'clientId': client,
+                    'secret': secret
+                })
+            }).then(res => {
+                if (!res.ok) {
+                    throw Error(res.status + ':' + res.statusText);
+                }
+
+                return res.json();
+            })
+        },
+
         modal: {
             init: (css) => {
                 modal = new Modal('rdp-modal', css ? css: 'https://reddotpay.github.io/jspay/modal.css3.css');
             },
 
-            pay: (id, merchant, amount, currency, options) => {
+            pay: (accessToken, id, merchant, amount, currency, options) => {
                 modal.open();
                 return lib
-                    .pay(id, merchant, amount, currency, options)
+                    .pay(accessToken, id, merchant, amount, currency, options)
                     .then(auth => {
                         modal.frame.setAttribute('src', auth.payUrl);
                         return auth;
@@ -190,10 +212,10 @@ const RDP = (() => {
             },
         },
 
-        pay(id, merchant, amount, currency, options) {
+        pay(accessToken, id, merchant, amount, currency, options) {
             const pay = new Pay(merchant, lib.authDomain);
             return pay
-                .do(id, amount, currency, options)
+                .do(accessToken, id, amount, currency, options)
                 .then(auth => {
                     if (!auth || !auth.token) {
                         throw Error("0: auth token is empty");
