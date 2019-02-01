@@ -174,7 +174,7 @@ const RDP = (() => {
         domain: 'https://connect.reddotpay.sg',
 
         auth: (client, secret) => {
-            return fetch(this.authDomain + '/authenticate', {
+            return fetch(lib.authDomain + '/authenticate', {
                 method: 'POST',
                 credentials: 'same-origin',
                 mode: 'cors',
