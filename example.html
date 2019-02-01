@@ -134,6 +134,9 @@
         let el = id => { return document.getElementById(id) };
         
         el('pay').addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
             el('paymentRef').innerText = "OID" + (new Date()).getTime();
 
             RDP.auth('2nsbvbgvqpfpgftsfpfo2r5p5i', 'ahbp2v9ql4bu8lv6njmfk59ibjq3j96d01lnflfh078orbnt6c5')
@@ -155,9 +158,7 @@
                 console.log(e);
             });
 
-        
-        
-            
+            return false;    
         });
     </script>
   </body>
