@@ -139,17 +139,17 @@
             RDP.auth('2nsbvbgvqpfpgftsfpfo2r5p5i', 'ahbp2v9ql4bu8lv6njmfk59ibjq3j96d01lnflfh078orbnt6c5')
             .then(res => {
                 console.log(res);
-                // RDP.modal.pay(
-
-                //     el('paymentRef').innerText,
-                //     '97528909-7fc1-407b-aacd-2b301bbc49fb', 
-                //     el('totalAmount').innerText.substring(1),
-                //     'SGD',
-                //     { promo: el('promoCode').value }
-                // )
-                // .catch(e => {
-                //     console.log(e);
-                // });
+                RDP.modal.pay(
+                    res.accessToken,
+                    el('paymentRef').innerText,
+                    '97528909-7fc1-407b-aacd-2b301bbc49fb', 
+                    el('totalAmount').innerText.substring(1),
+                    'SGD',
+                    {}
+                )
+                .catch(e => {
+                    console.log(e);
+                });
             })
             .catch(e => {
                 console.log(e);
