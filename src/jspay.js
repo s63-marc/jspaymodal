@@ -159,6 +159,7 @@ const RDP = (() => {
                 body: JSON.stringify(options)
             })
             .then(res => {
+                console.log(res);
                 if (!res.ok) {
                     throw Error(res.status + ':' +res.statusText);
                 }

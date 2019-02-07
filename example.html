@@ -159,14 +159,15 @@
                     console.log(e);
                 })
                 .finally(res => {
-
+                    const oid = "OID" + (new Date()).getTime();
+                    console.log("setting oid: " + oid);
+                    el('paymentRef').innerText = oid;
                 });
             })
             .catch(e => {
                 console.log(e);
             });
 
-            el('paymentRef').innerText = "OID" + (new Date()).getTime();
             return false;    
         });
     </script>
