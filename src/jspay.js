@@ -86,6 +86,7 @@ const RDP = (() => {
         close() {
             const hidden = this.cssHidden;
             if (!this.modal.classList.contains(hidden)) this.modal.classList.add(hidden);
+            this.frame.src = "";
         }
 
         open() {
