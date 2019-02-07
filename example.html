@@ -8,13 +8,19 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen,print" href="modal.loader2.css3.css">
-    <title>Global Example Shopping: Checkout Form</title>
+    <title>Global Example Shopping: Checkout</title>
+    <style type="text/css">
+
+    h2, p.lead {
+        text-align: left;
+    }
+    </style>
   </head>
   <body>
     <div class="container">
         <div class="py-5 text-center">
-            <img class="d-block mx-auto mb-4" src="logo.png" alt="" height="72">
-            <h2>Checkout form</h2>
+            <img class="d-block mx-auto mb-4" src="lorem-logo.png" alt="" height="72">
+            <h2>Checkout</h2>
             <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non mi eget augue fermentum fringilla. Phasellus ut arcu quis libero feugiat elementum quis et mi. Etiam sit amet nulla nibh. Mauris ornare mollis ipsum sit amet mattis. Nulla sed lacus arcu. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
         </div>
         <div class="row">
@@ -120,6 +126,7 @@
                 <li class="list-inline-item"><a href="#">Privacy</a></li>
                 <li class="list-inline-item"><a href="#">Terms</a></li>
                 <li class="list-inline-item"><a href="#">Support</a></li>
+                <li class="list-inline-item"><a href="http://www.freepik.com">Logo designed by Andi Asmara / Freepik</a></li>
             </ul>
         </footer>
     </div>
@@ -136,8 +143,6 @@
         el('pay').addEventListener('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
-            
-            el('paymentRef').innerText = "OID" + (new Date()).getTime();
 
             RDP.auth('2nsbvbgvqpfpgftsfpfo2r5p5i', 'ahbp2v9ql4bu8lv6njmfk59ibjq3j96d01lnflfh078orbnt6c5')
             .then(res => {
@@ -152,12 +157,16 @@
                 )
                 .catch(e => {
                     console.log(e);
+                })
+                .finally(res => {
+
                 });
             })
             .catch(e => {
                 console.log(e);
             });
 
+            el('paymentRef').innerText = "OID" + (new Date()).getTime();
             return false;    
         });
     </script>
