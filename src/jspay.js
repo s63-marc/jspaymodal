@@ -160,7 +160,6 @@ const RDP = (() => {
                 body: JSON.stringify(options)
             })
             .then(res => {
-                console.log(res);
                 if (!res.ok) {
                     throw Error(res.status + ':' +res.statusText);
                 }
@@ -204,8 +203,6 @@ const RDP = (() => {
                 return lib
                     .pay(accessToken, id, merchant, amount, currency, options)
                     .then(auth => {
-                        console.log("auth");
-                        console.log(auth);
                         modal.frame.setAttribute('src', auth.payUrl);
                         return auth;
                     })
