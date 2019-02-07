@@ -203,6 +203,8 @@ const RDP = (() => {
                 return lib
                     .pay(accessToken, id, merchant, amount, currency, options)
                     .then(auth => {
+                        console.log("auth");
+                        console.log(auth);
                         modal.frame.setAttribute('src', auth.payUrl);
                         return auth;
                     })
