@@ -18,7 +18,7 @@
     #payframe {
         border: 1px solid #eee;
         width: 100%;
-
+        height: 68em;
     }
     </style>
   </head>
@@ -113,7 +113,7 @@
                 <div class="alert alert-info" role="alert" id="loading">
                     Calculating payment... Please wait...
                 </div>
-                <iframe id="payframe"></iframe>
+                <iframe id="payframe" class="d-none"></iframe>
             </div>
         </div>
         <footer class="my-5 pt-5 text-muted text-center text-small">
@@ -149,15 +149,17 @@
             )
             .then(auth => {
                 el('payframe').src = auth.payUrl;
+                el('payframe').classList.remove('d-none');
+                el('loading').classList.add('d-none');
             })
             .catch(e => {
                 console.log(e);
+                el('loading').innerText = "Something went wrong. Please refresh";
             })
             .finally(res => {
                 const oid = "OID" + (new Date()).getTime();
                 console.log("setting oid: " + oid);
                 el('paymentRef').innerText = oid;
-                el('loading').classList.add('d-none');
             });
         })
         .catch(e => {
