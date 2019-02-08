@@ -14,6 +14,12 @@
     h2, p.lead {
         text-align: left;
     }
+
+    #payframe {
+        border: 1px solid #eee;
+        width: 100%;
+
+    }
     </style>
   </head>
   <body>
@@ -24,60 +30,45 @@
             <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non mi eget augue fermentum fringilla. Phasellus ut arcu quis libero feugiat elementum quis et mi. Etiam sit amet nulla nibh. Mauris ornare mollis ipsum sit amet mattis. Nulla sed lacus arcu. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
         </div>
         <div class="row">
-            <div class="col col-8">
-                <h4>Cart</h4>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col" >Item</th>
-                            <th scope="col" class="text-center">Volume</th>
-                            <th scope="col" class="text-center">Price (USD)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Vivamus leo nibh</td>
-                            <td class="text-center">1</td>
-                            <td class="text-right" style="padding-right: 20px">$12.50</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Porta et vestibulum sed</td>
-                            <td class="text-center">2</td>
-                            <td class="text-right" style="padding-right: 20px">$19.98</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>varius at magna</td>
-                            <td class="text-center">1</td>
-                            <td class="text-right" style="padding-right: 20px">$2.25</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Total (USD)</th>
-                            <td></td>
-                            <td class="text-center">4</td>
-                            <td class="text-right" style="padding-right: 20px">$34.73</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col">
+            <div class="col-lg-4">
                 <ul class="list-group mb-3">
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <small class="text-muted">1x magnesium-carbon cowl</small>
+                        </div>
+                        <span class="text-muted">$500.00</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <small class="text-muted">1x black rubber full-body suit </small>
+                        </div>
+                        <span class="text-muted">$7400.00</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <div>
+                                <small class="text-muted">1x gold utility belt</small>
+                            </div>
+                            <span class="text-muted">$3300.00</span>
+                        </li>
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <small class="text-muted">1x carbonweave parachute</small>
+                        </div>
+                        <span class="text-muted">$5000.00</span>
+                    </li>
                     <li class="list-group-item d-flex justify-content-between lh-condensed">
                         <div>
                             <h6 class="my-0">Total Cost</h6>
                             <small class="text-muted">Brief description</small>
                         </div>
-                        <span class="text-muted">$34.73</span>
+                        <span class="text-muted">$16200.00</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between lh-condensed">
                         <div>
                             <h6 class="my-0">Tax</h6>
                             <small class="text-muted">Brief description</small>
                         </div>
-                        <span class="text-muted">$2.43</span>
+                        <span class="text-muted">$257.43</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between lh-condensed">
                         <div>
@@ -104,20 +95,25 @@
                     </li>
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Total (SGD)</span>
-                        <strong id="totalAmount">$37.16</strong>
+                        <strong id="totalAmount">$16455.43</strong>
                     </li>
                 </ul>
             
-                <form class="card p-2">
+                <form class="card p-2" style="margin-bottom:20px;">
                     <div class="input-group">
                         <input type="text" class="form-control" id="promoCode" placeholder="Promo code">
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-secondary">Redeem</button>
                         </div>
                     </div>
-                </form>
-                <hr class="mb-4"/>
-                <button type="button" class="btn btn-success btn-lg btn-block" id="pay">Pay</button> 
+                </form> 
+            </div>
+
+            <div class="col-lg-8">
+                <div class="alert alert-info" role="alert" id="loading">
+                    Calculating payment... Please wait...
+                </div>
+                <iframe id="payframe"></iframe>
             </div>
         </div>
         <footer class="my-5 pt-5 text-muted text-center text-small">
@@ -141,35 +137,31 @@
         let el = id => { return document.getElementById(id) };
         el('paymentRef').innerText = "OID" + (new Date()).getTime();
 
-        el('pay').addEventListener('click', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            RDP.auth('2nsbvbgvqpfpgftsfpfo2r5p5i', 'ahbp2v9ql4bu8lv6njmfk59ibjq3j96d01lnflfh078orbnt6c5')
-            .then(res => {
-                console.log(res);
-                RDP.modal.pay(
-                    res.accessToken,
-                    el('paymentRef').innerText,
-                    '97528909-7fc1-407b-aacd-2b301bbc49fb', 
-                    el('totalAmount').innerText.substring(1),
-                    'SGD',
-                    {}
-                )
-                .catch(e => {
-                    console.log(e);
-                })
-                .finally(res => {
-                    const oid = "OID" + (new Date()).getTime();
-                    console.log("setting oid: " + oid);
-                    el('paymentRef').innerText = oid;
-                });
+        RDP.auth('2nsbvbgvqpfpgftsfpfo2r5p5i', 'ahbp2v9ql4bu8lv6njmfk59ibjq3j96d01lnflfh078orbnt6c5')
+        .then(res => {
+            RDP.pay(
+                res.accessToken,
+                el('paymentRef').innerText,
+                '97528909-7fc1-407b-aacd-2b301bbc49fb', 
+                el('totalAmount').innerText.substring(1),
+                'SGD',
+                {}
+            )
+            .then(auth => {
+                el('payframe').src = auth.payUrl;
             })
             .catch(e => {
                 console.log(e);
+            })
+            .finally(res => {
+                const oid = "OID" + (new Date()).getTime();
+                console.log("setting oid: " + oid);
+                el('paymentRef').innerText = oid;
+                el('loading').classList.add('d-none');
             });
-
-            return false;    
+        })
+        .catch(e => {
+            console.log(e);
         });
     </script>
   </body>

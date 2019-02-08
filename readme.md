@@ -10,6 +10,7 @@ Allows the Red Dot Payment (RDP) hosted payment and card capture page to be embe
 ## Example
 
 - [Modal Example](https://reddotpay.github.io/jspay/example-modal.html)
+- [Always-open Example](https://reddotpay.github.io/jspay/example-persistent.html)
 
 ## Usage
 
