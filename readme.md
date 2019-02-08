@@ -9,7 +9,7 @@ Allows the Red Dot Payment (RDP) hosted payment and card capture page to be embe
 
 ## Example
 
-- [example.html](https://reddotpay.github.io/jspay/example.html)
+- [Modal Example](https://reddotpay.github.io/jspay/example-modal.html)
 
 ## Usage
 
@@ -31,23 +31,42 @@ index.html
 
     <script src="https://reddotpay.github.io/jspay/src/jspay.js"></script>
     <script type="text/javascript">
-        // You can overwrite the base CSS file:
-        // RDP.modal.init('https://myowndomain.com/assets/modal.css3.css');
-        RDP.modal.init();
+      // You can overwrite the base CSS file:
+      // RDP.modal.init('https://myowndomain.com/assets/modal.css3.css');
+      RDP.modal.init();
+      
+      let el = id => { return document.getElementById(id) };
+      
+      // To switch to PRODUCTION:
+      // RDP.authDomain = 'https://connect.api.reddotpay.com';
+      // RDP.domain = 'https://connect.reddotpay.com';
+      el('pay').addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
 
-        // To switch to PRODUCTION:
-        // RDP.authDomain = 'https://connect.api.reddotpay.com';
-        // RDP.domain = 'https://connect.reddotpay.com';
-
-        document.getElementById('pay').addEventListener('click', function (e) {
-            RDP.modal.pay(
-                'OID' + (new Date()).getTime(), // Order ID
-                '00000000-0000-0000-0000-000000000000', // Merchant ID
-                37.76, // Amount
-                'SGD', // SGD
-                { promo: 'HAPPYNEWYEAR01' } // Other details
-            );
+        RDP.auth(':client-key', ':client-secret')
+        .then(res => {
+          RDP.modal.pay(
+            res.accessToken,
+            'OID' + (new Date()).getTime(), // Order ID
+            '00000000-0000-0000-0000-000000000000', // Merchant ID
+            37.76, // Amount
+            'SGD', // SGD
+            { msg: 'HAPPYNEWYEAR19' } // Other details
+          )
+          .catch(e => {
+            console.log(e); // handle error
+          })
+          .finally(res => {
+            // everything done! do something...
+          });
+        })
+        .catch(e => {
+          console.log(e); // handle error
         });
+
+        return false;    
+      });
     </script>
   </body>
 </html>
@@ -58,25 +77,32 @@ index.html
 Attach callbacks to various events when doing a payment
 
 ~~~Javascript
-  RDP.modal.pay(
+  RDP.auth(':client-key', ':client-secret')
+  .then(res => {
+    RDP.pay(
+      res.accessToken,
       'OID' + (new Date()).getTime(), // Order ID
       '00000000-0000-0000-0000-000000000000', // Merchant ID
       37.76, // Amount
       'SGD', // SGD
-      { promo: 'HAPPYNEWYEAR01' } // Other details
-  )
-  .then(auth => {
-    console.log('Auth response:');
-    console.log(auth);
-    console.log('Display full payment URL:');
-    console.log(auth.payUrl);
+      { msg: 'HAPPYNEWYEAR19' } // Other details
+    )
+    .then(auth => {
+      console.log('Auth response:');
+      console.log(auth);
+      console.log('Display full payment URL:');
+      console.log(auth.payUrl);
+    })
+    .catch(e => {
+      console.log(e.message);
+    })
+    .finally(() => {
+      console.log('End of request!');
+    });
   })
   .catch(e => {
-    console.log(e.message);
-  })
-  .finally(() => {
-    console.log('End of request!');
-  })
+    console.log(e); // handle error
+  });
 ~~~
 
 ### Build-your-own
@@ -94,12 +120,15 @@ Create your own payment flow
     <iframe id="paymentForm"></iframe>
     <script src="https://reddotpay.github.io/jspay/src/jspay.js"></script>
     <script type="text/javascript">
-      RDP.pay(
-            'OID' + (new Date()).getTime(), // Order ID
-            '00000000-0000-0000-0000-000000000000', // Merchant ID
-            37.76, // Amount
-            'SGD', // SGD
-            { promo: 'HAPPYNEWYEAR01' } // Other details
+      RDP.auth(':client-key', ':client-secret')
+      .then(res => {
+        RDP.pay(
+          res.accessToken,
+          'OID' + (new Date()).getTime(), // Order ID
+          '00000000-0000-0000-0000-000000000000', // Merchant ID
+          37.76, // Amount
+          'SGD', // SGD
+          { msg: 'HAPPYNEWYEAR19' } // Other details
         )
         .then(auth => {
           document.getElementById('paymentForm').src = auth.payUrl;
@@ -109,7 +138,11 @@ Create your own payment flow
         })
         .finally(() => {
           console.log('End of request!');
-        })
+        });
+      })
+      .catch(e => {
+        console.log(e); // handle error
+      });
     </script>
   </body>
 </html>

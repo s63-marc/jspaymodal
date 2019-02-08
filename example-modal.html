@@ -139,7 +139,7 @@
     <script type="text/javascript">
         RDP.modal.init('modal.css3.css');
         let el = id => { return document.getElementById(id) };
-        el('paymentRef').innerText = "OID" + (new Date()).getTime()
+        el('paymentRef').innerText = "OID" + (new Date()).getTime();
 
         el('pay').addEventListener('click', function (e) {
             e.preventDefault();
