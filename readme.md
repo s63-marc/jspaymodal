@@ -1,4 +1,4 @@
-# RDP Javascript Pay [Modal]
+# Red Dot Payment Javascript Pay [Modal]
 
 Allows the Red Dot Payment (RDP) hosted payment and card capture page to be embedded to an HTML page.
 
