@@ -14,6 +14,17 @@
     h2, p.lead {
         text-align: left;
     }
+
+    #paymentRef {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        background: none;
+        padding: 0;
+        margin: 0;
+        border: 0;
+    }
+
     </style>
   </head>
   <body>
@@ -88,7 +99,7 @@
                             <h6 class="my-0">Payment Reference</h6>
                             <small class="text-muted"></small>
                         </div>
-                        <span class="text-muted"><span id="paymentRef"></span></span>
+                        <span class="text-muted" id="paymentRef"></span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Total (SGD)</span>
