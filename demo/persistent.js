@@ -9,6 +9,8 @@ if (qs) {
     var qsc = qs.get('client');
     var qsm = qs.get('merchant');
     var qsp = qs.get('production');
+    var qsccy = qs.get('ccy');
+    var qsamt = qs.get('amt');
 
     if (qsc) {
         qsc = qsc.split(':');
@@ -23,6 +25,16 @@ if (qs) {
     if (qsp) {
         el('isProduction').checked = qsp == 'Y';
     }
+
+    if (qsccy) {
+        el('currency').value = qsccy;
+        el('totalCcy').innerText = qsccy;
+    }
+
+    if (qsamt) {
+        el('amount').value = qsamt;
+        el('totalAmount').innerText = qsamt;
+    }
 }
 
 RDP.domain = 'https://connect.api.reddotpay' + (el('isProduction').checked ? '.com': '.sg');
@@ -32,8 +44,8 @@ RDP.auth(el('clientKey').value, el('clientSercret').value)
         res.accessToken,
         el('paymentRef').innerText,
         el('merchant').value, 
-        el('totalAmount').innerText.substring(1),
-        'SGD',
+        el('totalAmount').innerText,
+        el('totalCcy').innerText,
         {}
     )
     .then(auth => {
@@ -61,7 +73,9 @@ $('#configForm').on('submit', e => {
 
     window.location.href = '?client=' + el('clientKey').value + ':' + el('clientSercret').value +
         '&merchant=' + el('merchant').value + 
-        '&production=' + (el('isProduction').checked? 'Y': 'N');
+        '&production=' + (el('isProduction').checked? 'Y': 'N') +
+        '&currency=' + el('currency').value +
+        '&amount=' + el('amount').value;
 
     false;
 });

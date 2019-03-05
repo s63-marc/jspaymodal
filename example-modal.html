@@ -61,14 +61,24 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-row align-items-center">
+                            <div class="form-row">
                                 <div class="col-md">
                                     <input type="text" class="form-control" placeholder="Merchant" id="merchant">
                                 </div>
                                 <div class="col-md">
-                                    <div class="custom-control custom-checkbox mr-sm-2">
-                                        <input class="custom-control-input" type="checkbox" value="" id="isProduction">
-                                        <label class="custom-control-label" for="isProduction">Connect to Production</label>
+                                    <div class="form-row align-items-center">
+                                        <div class="col-md">
+                                            <input type="text" class="form-control" placeholder="Currency" id="currency">
+                                        </div>
+                                        <div class="col-md">
+                                            <input type="text" class="form-control" placeholder="Amount" id="amount">
+                                        </div>
+                                        <div class="col-md">
+                                            <div class="custom-control custom-checkbox mr-sm-2">
+                                                <input class="custom-control-input" type="checkbox" value="" id="isProduction">
+                                                <label class="custom-control-label" for="isProduction">Production</label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -147,8 +157,8 @@
                         <span class="text-muted" id="paymentRef"></span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between">
-                        <span>Total (SGD)</span>
-                        <strong id="totalAmount">$0.01</strong>
+                        <span>Total (<em id="totalCcy">SGD</em>)</span>
+                        <strong id="totalAmount">0.01</strong>
                     </li>
                 </ul>
             
