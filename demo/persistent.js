@@ -1,7 +1,8 @@
 RDP.modal.init('modal.css3.css');
 let el = id => { return document.getElementById(id) };
+let getDomain = () => { return window.location.protocol + '//' + window.location.host };
 el('paymentRef').innerText = "OID" + (new Date()).getTime();
-
+el('domainName').innerText = getDomain();
 const qs = new URLSearchParams(window.location.search);
 
 if (qs) {

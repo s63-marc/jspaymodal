@@ -1,8 +1,9 @@
 RDP.modal.init('modal.css3.css');
 let el = id => { return document.getElementById(id) };
-var getDomain = () => {
-    return window.location.protocol + '//' + window.location.host;
-}
+let getDomain = () => { return window.location.protocol + '//' + window.location.host };
+
+el('domainName').innerText = getDomain();
+el('paymentRef').innerText = "OID" + (new Date()).getTime();
 
 const qs = new URLSearchParams(window.location.search);
 
@@ -25,9 +26,6 @@ if (qs) {
         el('isProduction').checked = qsp == 'Y';
     }
 }
-
-el('domainName').innerText = getDomain();
-el('paymentRef').innerText = "OID" + (new Date()).getTime();
 
 el('pay').addEventListener('click', function (e) {
     e.preventDefault();
