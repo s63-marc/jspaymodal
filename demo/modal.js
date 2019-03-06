@@ -62,7 +62,7 @@ el('pay').addEventListener('click', function (e) {
         RDP.modal.pay(
             res.accessToken,
             el('paymentRef').innerText,
-            $('merchant').value, 
+            el('merchant').value, 
             el('totalAmount').innerText,
             el('totalCcy').innerText,
             {}
