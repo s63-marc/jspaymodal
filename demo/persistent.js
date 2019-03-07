@@ -74,8 +74,8 @@ $('#configForm').on('submit', e => {
     window.location.href = '?client=' + el('clientKey').value + ':' + el('clientSercret').value +
         '&merchant=' + el('merchant').value + 
         '&production=' + (el('isProduction').checked? 'Y': 'N') +
-        '&currency=' + el('currency').value +
-        '&amount=' + el('amount').value;
+        '&currency=' + el('ccy').value +
+        '&amount=' + el('amt').value;
 
     false;
 });
