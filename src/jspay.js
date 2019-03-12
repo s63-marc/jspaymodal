@@ -220,8 +220,13 @@ const RDP = (() => {
                     if (!auth || !auth.token) {
                         throw Error("0: auth token is empty");
                     }
-
-                    auth.payUrl = lib.domain.replace('.api.', '.') + '/m/' + merchant + '#/pay/' + auth.token;
+                    
+                    if (lib.domain == 'https://connect.api.reddotpay.com') {
+                        auth.payUrl = 'https://connect2.reddotpay.com/m/' + merchant + '#/pay/' + auth.token;
+                    } else {
+                        auth.payUrl = lib.domain.replace('.api.', '.') + '/m/' + merchant + '#/pay/' + auth.token;
+                    }
+                
                     return auth;
                 });
         }
