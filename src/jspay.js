@@ -1,6 +1,9 @@
 "use strict";
 
 const RDP = (() => {
+    const closeSVG = '<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 212.982 212.982" width="12" height="12" style="enable-background:new 0 0 212.982 212.982;" xml:space="preserve">' +
+        '<path style="fill-rule:evenodd;clip-rule:evenodd;" d="M131.804,106.491l75.936-75.936c6.99-6.99,6.99-18.323,0-25.312c-6.99-6.99-18.322-6.99-25.312,0l-75.937,75.937L30.554,5.242c-6.99-6.99-18.322-6.99-25.312,0c-6.989,6.99-6.989,18.323,0,25.312l75.937,75.936L5.242,182.427c-6.989,6.99-6.989,18.323,0,25.312c6.99,6.99,18.322,6.99,25.312,0l75.937-75.937l75.937,75.937c6.989,6.99,18.322,6.99,25.312,0c6.99-6.99,6.99-18.322,0-25.312L131.804,106.491z"/>' +
+        '</svg>';
     const Modal = class {
         // modal;
         // closeButton;
@@ -45,11 +48,8 @@ const RDP = (() => {
             const modal = document.createElement('DIV');
             modal.setAttribute('id', id);
             modal.classList.add(this.cssHidden);
-            modal.innerHTML = '<div class="content"><span class="close hidden">' +
-                '<svg viewPort="0 0 12 12" height="12" width="12" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
-                '<line x1="1" y1="11" x2="11" y2="1" stroke="black" stroke-width="2"/>' +
-                '<line x1="1" y1="1" x2="11" y2="11" stroke="black" stroke-width="2"/>' +
-                '</svg></span><div class="frame"><div class="loader"></div>' +
+            modal.innerHTML = '<div class="content"><span class="close hidden">' + closeSVG +
+                '</span><div class="frame"><div class="loader"></div>' +
                 '<div class="frame-cont"><iframe class="hidden"></iframe></div></div></div>';
             document.getElementsByTagName('body')[0].appendChild(modal);
 
