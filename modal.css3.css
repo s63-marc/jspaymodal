@@ -33,17 +33,17 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
-    padding: 1rem 1.5rem;
+    padding: .1rem;
     width: 60rem;
     height: 60rem;
     max-width: 90%;
     max-height: 90%;
-    border-radius: 0.3rem;
+    border-radius: 0.2rem;
 }
 
 #rdp-modal .close {
     position: absolute;
-    right: 0;
+    right: .2rem;
     top: -1.6rem;
     text-align: center;
     cursor: pointer;
