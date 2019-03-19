@@ -38,6 +38,7 @@
     height: 60rem;
     max-width: 90%;
     max-height: 90%;
+    min-width: 340px;
     border-radius: 0.2rem;
 }
 
