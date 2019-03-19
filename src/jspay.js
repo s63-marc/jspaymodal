@@ -45,8 +45,8 @@ const RDP = (() => {
             const modal = document.createElement('DIV');
             modal.setAttribute('id', id);
             modal.classList.add(this.cssHidden);
-            modal.innerHTML = '<div class="content"><span class="close hidden">×</span><div class="frame"><div class="loader"></div><iframe class="hidden"></iframe></div></div>';
-            
+            modal.innerHTML = '<div class="content"><span class="close hidden">×</span><div class="frame">' +
+                '<div class="loader"></div><div class="frame-cont"><iframe class="hidden"></iframe></div></div></div>';
             document.getElementsByTagName('body')[0].appendChild(modal);
 
             return modal;

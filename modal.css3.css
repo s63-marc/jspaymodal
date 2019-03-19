@@ -57,12 +57,18 @@
     height: 100%;
 }
 
+#rdp-modal .frame-cont {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
 #rdp-modal iframe {
     border: 0;
     width: 100%;
     height: 100%;
     opacity: 1;
 }
+
 #rdp-modal iframe.hidden {
     opacity: 0;
 }
