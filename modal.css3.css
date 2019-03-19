@@ -65,7 +65,7 @@
 }
 
 #rdp-modal .frame-cont {
-    overflow: auto;
+    overflow-y: auto;
     height: 100%;
     -webkit-overflow-scrolling: touch;
 }
