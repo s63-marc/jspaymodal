@@ -43,7 +43,8 @@
 
 #rdp-modal .close {
     position: absolute;
-    right: 1em;
+    right: .5rem;
+    top: .3rem;
     text-align: center;
     cursor: pointer;
     color: #aaa;
