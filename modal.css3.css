@@ -47,10 +47,14 @@
     top: .3rem;
     text-align: center;
     cursor: pointer;
-    color: #aaa;
 }
-#rdp-modal .close:hover {
-    color: #910000;
+
+#rdp-modal .close svg {
+    fill: #aaa;
+}
+
+#rdp-modal .close:hover svg {
+    fill: #910000;
 }
 
 #rdp-modal .frame {

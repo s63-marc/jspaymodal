@@ -67,6 +67,7 @@ const RDP = (() => {
 
             modal.addEventListener('click', e => {
                 [modal, closeButton].forEach(el => {
+                    console.log(e.target, el)
                     if (e.target === el) {
                         close();
                         return false;
