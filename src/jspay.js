@@ -66,15 +66,19 @@ const RDP = (() => {
             const displayNone = this.cssDisplayNone;
 
             modal.addEventListener('click', e => {
-                [modal, closeButton].forEach(el => {
-                    console.log(e.target, el)
-                    if (e.target === el) {
-                        close();
-                        return false;
-                    }
-                });
+                if (e.target === modal) {
+                    close();
+                    return false;
+                }
             });
         
+            closeButton.addEventListener('click', e => {
+                e.stopPropagation();
+                e.preventDefault();
+                close();
+                return false;
+            });
+            
             modal.addEventListener(this.getTransitionEvents().end, e => {
                 const cl = modal.classList;
                 if (cl.contains(hidden) && !cl.contains(displayNone)) cl.add(displayNone);
