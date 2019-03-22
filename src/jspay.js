@@ -92,7 +92,7 @@ const RDP = (() => {
             });
             
             window.addEventListener("message", function (message) {
-                if (messsage.data === "RDP.modal.close") {
+                if (message.data === "RDP.modal.close") {
                     close();
                 }
             });
