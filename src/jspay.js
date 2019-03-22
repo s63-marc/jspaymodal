@@ -90,6 +90,12 @@ const RDP = (() => {
                 closeButton.classList.remove(hidden);
                 spinner.classList.add(hidden);
             });
+            
+            window.addEventListener("message", function (message) {
+                if (messsage.data === "RDP.modal.close") {
+                    close();
+                }
+            });
         }
 
         close() {
