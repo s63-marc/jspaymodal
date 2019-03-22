@@ -65,12 +65,20 @@
 }
 
 #rdp-modal .frame-cont {
-    overflow: hidden;
-    overflow-y: auto;
-    height: 100%;
-    -webkit-overflow-scrolling: touch;
+	overflow: hidden;
+	height: 100%;
+	-webkit-overflow-scrolling: touch;
 }
 
+@supports (-webkit-overflow-scrolling: touch) {
+	/* CSS specific to iOS devices */
+	#rdp-modal .frame-cont {
+		overflow: hidden;
+		overflow-y: auto;
+		height: 100%;
+		-webkit-overflow-scrolling: touch;
+	}
+}
 #rdp-modal iframe {
     border: 0;
     width: 100%;
