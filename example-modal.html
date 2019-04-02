@@ -123,8 +123,8 @@
                     <tbody>
                         <tr>
                             <th scope="row">Card Numbers:</th>
-                            <td onclick="copyFunc('visa-success')" id="visa-success">4111 1111 1111 1111</td>
-                            <td onclick="copyFunc('visa-fail')" id="visa-fail">4532 0818 6469 8195</td>
+                            <td id="visa-success">4111 1111 1111 1111</td>
+                            <td id="visa-fail">4532 0818 6469 8195</td>
                         </tr>
                         <tr>
                             <th scope="row">Expiry Date:</th>
@@ -150,10 +150,10 @@
                     <tbody>
                         <tr>
                             <th scope="row">Card Numbers:</th>
-                            <td onclick="copyFunc('mastercard-success')" id="mastercard-success">5123 4567 8901
+                            <td id="mastercard-success">5123 4567 8901
                                 2346
                             </td>
-                            <td onclick="copyFunc('mastercard-fail')" id="mastercard-fail">5460 1798 6185 4077</td>
+                            <td id="mastercard-fail">5460 1798 6185 4077</td>
                         </tr>
                         <tr>
                             <th scope="row">Expiry Date:</th>
@@ -178,7 +178,7 @@
                     <tbody>
                         <tr>
                             <th scope="row">Email:</th>
-                            <td onclick="copyFunc('alipay-email')" id="alipay-email">alipaytest20091@gmail.com</td>
+                            <td id="alipay-email">alipaytest20091@gmail.com</td>
                         </tr>
                         <tr>
                             <th scope="row">Login Passcode:</th>
@@ -353,6 +353,12 @@
             return false;
         });
 
+        document.getElementById('visa-success').addEventListener("click",function(){copyFunc('visa-success')});
+        document.getElementById('visa-fail').addEventListener("click",function(){copyFunc('visa-fail')});
+        document.getElementById('mastercard-success').addEventListener("click",function(){copyFunc('mastercard-success')});
+        document.getElementById('mastercard-fail').addEventListener("click",function(){copyFunc('mastercard-fail')});
+        document.getElementById('alipay-email').addEventListener("click",function(){copyFunc('alipay-email')});
+        
         function copyFunc(element) {
             //Select the text
             var txt = document.getElementById(element).innerText
