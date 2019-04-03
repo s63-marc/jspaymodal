@@ -231,69 +231,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
     <script src="src/jspay.js"></script>
-    <script type="text/javascript">
-        RDP.modal.init('modal.css3.css');
-        let el = id => {
-            return document.getElementById(id)
-        };
-        el('paymentRef').innerText = "OID" + (new Date()).getTime();
-        RDP.auth('7rd0efjqv82ms9rv4hc6p0la8p', '1qk13a1dn60d2tj9cmu21tlvjn5v4km32tqm7on392j1on5ccq86')
-            .then(res => {
-                RDP.pay(
-                        res.accessToken,
-                        el('paymentRef').innerText,
-                        '9bb3e21f-fedf-47c3-af01-031e3c2fb0ac',
-                        el('totalAmount').innerText.substring(1),
-                        'SGD', {}
-                    )
-                    .then(auth => {
-                        el('payframe').src = auth.payUrl;
-                        el('payframe').classList.remove('d-none');
-                        el('loading').classList.add('d-none');
-                    })
-                    .catch(e => {
-                        console.log(e);
-                        el('loading').innerText = "Something went wrong. Please refresh";
-                    })
-                    .finally(res => {
-                        const oid = "OID" + (new Date()).getTime();
-                        console.log("setting oid: " + oid);
-                        el('paymentRef').innerText = oid;
-                    });
-            })
-            .catch(e => {
-                console.log(e);
-            });
-        
-        document.getElementById('visa-success').addEventListener("click",function(){copyFunc('visa-success')});
-        document.getElementById('visa-fail').addEventListener("click",function(){copyFunc('visa-fail')});
-        document.getElementById('mastercard-success').addEventListener("click",function(){copyFunc('mastercard-success')});
-        document.getElementById('mastercard-fail').addEventListener("click",function(){copyFunc('mastercard-fail')});
-        document.getElementById('alipay-email').addEventListener("click",function(){copyFunc('alipay-email')});
-
-        function copyFunc(element) {
-            //Select the text
-            var txt = document.getElementById(element).innerText
-
-            //Create a textarea to allow population of text
-            var ta = document.createElement('textarea');
-            ta.setAttribute('readonly', '');
-            ta.value = txt;
-            document.body.appendChild(ta)
-            ta.select()
-
-            //Copy the text inside the text field 
-            document.execCommand("copy");
-
-            //Remove the textarea created
-            document.body.removeChild(ta)
-
-            //Alert the copied text 
-            document.getElementById(element).innerText = "Copied!"
-            setTimeout(() => {
-                document.getElementById(element).innerText = txt
-            }, 1000);
-        }
+    <script src="demo/persistent.js"></script>
+    
+    
    </script>
 </body>
 

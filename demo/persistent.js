@@ -79,3 +79,33 @@ $('#configForm').on('submit', e => {
 
     false;
 });
+
+el('visa-success').addEventListener("click",function(){copyFunc('visa-success')});
+el('visa-fail').addEventListener("click",function(){copyFunc('visa-fail')});
+el('mastercard-success').addEventListener("click",function(){copyFunc('mastercard-success')});
+el('mastercard-fail').addEventListener("click",function(){copyFunc('mastercard-fail')});
+el('alipay-email').addEventListener("click",function(){copyFunc('alipay-email')});
+
+function copyFunc(element) {
+     //Select the text
+     var txt = document.getElementById(element).innerText
+
+     //Create a textarea to allow population of text
+     var ta = document.createElement('textarea');
+     ta.setAttribute('readonly', '');
+     ta.value = txt;
+     document.body.appendChild(ta)
+     ta.select()
+
+     //Copy the text inside the text field 
+     document.execCommand("copy");
+
+     //Remove the textarea created
+     document.body.removeChild(ta)
+
+     //Alert the copied text 
+     document.getElementById(element).innerText = "Copied!"
+     setTimeout(() => {
+         document.getElementById(element).innerText = txt
+     }, 1000);
+ }
