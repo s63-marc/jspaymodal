@@ -80,6 +80,17 @@ $('#configForm').on('submit', e => {
     false;
 });
 
+//Future Date
+const now = new Date();
+let year = now.getFullYear() + 2;
+let date = now.getDate()+1;
+
+let futureDates = document.getElementsByClassName('futureDates');
+for(let i = 0; i < futureDates.length; i++){
+    futureDates[i].innerText = `${date}/${year.toString().slice(2)}`
+}
+
+
 el('visa-success').addEventListener("click",function(){copyFunc('visa-success')});
 el('visa-fail').addEventListener("click",function(){copyFunc('visa-fail')});
 el('mastercard-success').addEventListener("click",function(){copyFunc('mastercard-success')});

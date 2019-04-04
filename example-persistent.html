@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" type="image/icon" href="favicon.ico" />
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen,print" href="modal.loader2.css3.css">
     <title>SGD demo Checkout</title>
     <style type="text/css">
@@ -46,195 +46,276 @@
 
 <body>
     <div class="container">
-        <div class="py-5 ">
-            <div class="card">
-                <div class="card-body">
-                    <h6 class="card-subtitle mb-2 text-muted">Prerequisites:</h6>
-                    <p class="card-text">
-                        <ul>
-                            <li>The domain (<span id="domainName"></span>) should be added as part of your
-                                merchant's CSP (Content Security Policy).</li>
-                            <li>The hosted page should be set to "Browser to server"</li>
-                            <li>The hosted page should be launched</li>
-                        </ul>
-                    </p>
-                    <form>
-                        <div class="form-row">
-                            <div class="col-lg">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Client Key" id="clientKey">
+        <img class="d-block mx-auto mb-4" src="lorem-logo.png" alt="" height="72">
+        <div class="pb-2" style="transform:translateX(80%)">
+            <span>
+                <a class="btn btn-light" data-toggle="collapse" href="#config" role="button" aria-expanded="false"
+                    aria-controls="config">Configure</a>
+            </span>
+
+            <span>
+                <a class="btn btn-light" data-toggle="collapse" href="#testCards" role="button" aria-expanded="false"
+                    aria-controls="testCards">Test Cards</a>
+            </span>
+        </div>
+        <br>
+        <div>
+            <div class="collapse multi-collapse pb-2" id="config">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">Prerequisites:</h6>
+                        <p class="card-text">
+                            <ul>
+                                <li>The domain (<span id="domainName"></span>) should be added as part of your
+                                    merchant's CSP (Content Security Policy).</li>
+                                <li>The hosted page should be set to "Browser to server"</li>
+                                <li>The hosted page should be launched</li>
+                            </ul>
+                        </p>
+                        <form>
+                            <div class="form-row">
+                                <div class="col-lg">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Client Key" id="clientKey">
+                                    </div>
+                                </div>
+                                <div class="col-lg">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Client Secret"
+                                            id="clientSercret">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Client Secret" id="clientSercret">
+                            <div class="form-row">
+                                <div class="col-md">
+                                    <input type="text" class="form-control" placeholder="Merchant" id="merchant">
                                 </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="col-md">
-                                <input type="text" class="form-control" placeholder="Merchant" id="merchant">
-                            </div>
-                            <div class="col-md">
-                                <div class="form-row align-items-center">
-                                    <div class="col-md">
-                                        <input type="text" class="form-control" placeholder="Currency" id="currency">
-                                    </div>
-                                    <div class="col-md">
-                                        <input type="text" class="form-control" placeholder="Amount" id="amount">
-                                    </div>
-                                    <div class="col-md">
-                                        <div class="custom-control custom-checkbox mr-sm-2">
-                                            <input class="custom-control-input" type="checkbox" value="" id="isProduction">
-                                            <label class="custom-control-label" for="isProduction">Production</label>
+                                <div class="col-md">
+                                    <div class="form-row align-items-center">
+                                        <div class="col-md">
+                                            <input type="text" class="form-control" placeholder="Currency"
+                                                id="currency">
+                                        </div>
+                                        <div class="col-md">
+                                            <input type="text" class="form-control" placeholder="Amount" id="amount">
+                                        </div>
+                                        <div class="col-md">
+                                            <div class="custom-control custom-checkbox mr-sm-2">
+                                                <input class="custom-control-input" type="checkbox" value=""
+                                                    id="isProduction">
+                                                <label class="custom-control-label"
+                                                    for="isProduction">Production</label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
 
-            <div class="container">
-                <div class="row py-5">
-                    <div class="col-lg-8">
-                        <div class="alert alert-info" role="alert" id="loading">
-                            Calculating payment... Please wait...
-                        </div>
-                        <iframe id="payframe" class="d-none"></iframe>
+            <div class="collapse multi-collapse" id="testCards">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="visa-tab" data-toggle="tab" href="#visa" role="tab"
+                            aria-controls="visa" aria-selected="true">Visa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="mastercard-tab" data-toggle="tab" href="#mastercard" role="tab"
+                            aria-controls="mastercard" aria-selected="false">Mastercard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="alipay-tab" data-toggle="tab" href="#alipay" role="tab"
+                            aria-controls="alipay" aria-selected="false">Alipay</a>
+                    </li>
+                </ul>
+                <div class="tab-content text-center" id="myTabContent">
+                    <div class="tab-pane fade show active" id="visa" role="tabpanel" aria-labelledby="visa-tab">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">Success</th>
+                                    <th scope="col">Fail</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Card Numbers:</th>
+                                    <td id="visa-success">4111 1111 1111 1111</td>
+                                    <td id="visa-fail">4532 0818 6469 8195</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Expiry Date:</th>
+                                    <td colspan="2">Any future date <br>Eg:"<span class="futureDates"></span>"</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">CVV:</th>
+                                    <td colspan="2">Any 3 digits <br> Eg:"111"</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="text-center small"></div>
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="visa-tab" data-toggle="tab" href="#visa" role="tab"
-                                    aria-controls="visa" aria-selected="true">Visa</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="mastercard-tab" data-toggle="tab" href="#mastercard" role="tab"
-                                    aria-controls="mastercard" aria-selected="false">Mastercard</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="alipay-tab" data-toggle="tab" href="#alipay" role="tab"
-                                    aria-controls="alipay" aria-selected="false">Alipay</a>
-                            </li>
-                        </ul>
-                        <div class="tab-content text-center" id="myTabContent">
-                            <div class="tab-pane fade show active" id="visa" role="tabpanel" aria-labelledby="visa-tab">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col"></th>
-                                            <th scope="col">Success</th>
-                                            <th scope="col">Fail</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">Card Numbers:</th>
-                                            <td id="visa-success">4111 1111 1111 1111</td>
-                                            <td id="visa-fail">4532 0818 6469 8195</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Expiry Date:</th>
-                                            <td colspan="2">Any future date</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">CVV:</th>
-                                            <td colspan="2">Any 3 digits</td>
-                                        </tr>
+                    <div class="tab-pane fade" id="mastercard" role="tabpanel" aria-labelledby="mastercard-tab">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">Success</th>
+                                    <th scope="col">Fail</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Card Numbers:</th>
+                                    <td id="mastercard-success">5123 4567 8901
+                                        2346
+                                    </td>
+                                    <td id="mastercard-fail">5460 1798 6185 4077</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Expiry Date:</th>
+                                    <td colspan="2">Any future date <br>Eg:"<span class="futureDates"></span>"</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">CVV:</th>
+                                    <td colspan="2">Any 3 digits <br> Eg:"111"</td>
+                                </tr>
 
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="tab-pane fade" id="mastercard" role="tabpanel" aria-labelledby="mastercard-tab">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col"></th>
-                                            <th scope="col">Success</th>
-                                            <th scope="col">Fail</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">Card Numbers:</th>
-                                            <td id="mastercard-success">5123 4567 8901 2346</td>
-                                            <td id="mastercard-fail">5460 1798 6185 4077</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Expiry Date:</th>
-                                            <td colspan="2">Any future date</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">CVV:</th>
-                                            <td colspan="2">Any 3 digits</td>
-                                        </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="alipay" role="tabpanel" aria-labelledby="alipay-tab">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">Account Information</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Email:</th>
+                                    <td id="alipay-email">alipaytest20091@gmail.com</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Login Passcode:</th>
+                                    <td colspan="2">111 111</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Payment Passcode</th>
+                                    <td colspan="2">111 111</td>
+                                </tr>
 
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="tab-pane fade" id="alipay" role="tabpanel" aria-labelledby="alipay-tab">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col"></th>
-                                            <th scope="col">Account Information</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">Email:</th>
-                                            <td id="alipay-email">alipaytest20091@gmail.com</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Login Passcode:</th>
-                                            <td colspan="2">111 111</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Payment Passcode</th>
-                                            <td colspan="2">111 111</td>
-                                        </tr>
-
-                                    </tbody>
-                                </table>
-                            </div>
-                            <ul class="list-group mb-3">
-                                <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                    <div>
-                                        <h6 class="my-0">Payment Reference</h6>
-                                        <small class="text-muted"></small>
-                                    </div>
-                                    <span class="text-muted"><span id="paymentRef"></span></span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between">
-                                    <span>Total (SGD)</span>
-                                    <strong id="totalAmount">$0.02</strong>
-                                </li>
-                            </ul>
-
-
-                        </div>
-
+                            </tbody>
+                        </table>
                     </div>
                 </div>
+
             </div>
         </div>
+
+
+
+        <h2>Checkout</h2>
+        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non mi eget augue fermentum
+            fringilla. Phasellus ut arcu quis libero feugiat elementum quis et mi. Etiam sit amet nulla nibh. Mauris
+            ornare mollis ipsum sit amet mattis. Nulla sed lacus arcu. Pellentesque habitant morbi tristique
+            senectus et netus et malesuada fames ac turpis egestas.</p>
+
+
+        <div class="container">
+            <div class="row py-5">
+                <div class="col-lg-8">
+                    <div class="alert alert-info" role="alert" id="loading">
+                        Calculating payment... Please wait...
+                    </div>
+                    <iframe id="payframe" class="d-none"></iframe>
+                </div>
+
+                <div class="col-lg-4">
+
+
+                    <ul class="list-group mb-3">
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <div>
+                                <h6 class="my-0">Total Cost</h6>
+                                <small class="text-muted">Brief description</small>
+                            </div>
+                            <span class="text-muted">$2.01</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <div>
+                                <h6 class="my-0">Tax</h6>
+                                <small class="text-muted">Brief description</small>
+                            </div>
+                            <span class="text-muted">$0.00</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <div>
+                                <h6 class="my-0">Shipping</h6>
+                                <small class="text-muted">Brief description</small>
+                            </div>
+                            <span class="text-muted">$0</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between bg-light">
+                            <div class="text-success">
+                                <h6 class="my-0">Promo code</h6>
+                                <small>EXAMPLECODE</small>
+                            </div>
+                            <span class="text-success">
+                                <span>-$2</span>
+                            </span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <div>
+                                <h6 class="my-0">Payment Reference</h6>
+                                <small class="text-muted"></small>
+                            </div>
+                            <span class="text-muted" id="paymentRef"></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Total (<em id="totalCcy">SGD</em>)</span>
+                            <strong id="totalAmount">0.01</strong>
+                        </li>
+                    </ul>
+
+                    <form class="card p-2">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="promoCode" placeholder="Promo code">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-secondary">Redeem</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    </div>
+    </div>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+    </script>
     <script src="src/jspay.js"></script>
     <script src="demo/persistent.js"></script>
-    
-    
-   </script>
+
+
+    </script>
 </body>
 
 </html>

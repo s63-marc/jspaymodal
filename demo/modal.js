@@ -89,6 +89,7 @@ el('pay').addEventListener('click', function (e) {
     return false;    
 });
 
+
 RDP.modal.init('modal.css3.css');
         el('paymentRef').innerText = "OID" + (new Date()).getTime();
         el('pay').addEventListener('click', function (e) {
@@ -129,6 +130,16 @@ RDP.modal.init('modal.css3.css');
                 })
             return false;
         });
+
+        //Future Date
+        const now = new Date();
+        let year = now.getFullYear() + 2;
+        let date = now.getDate()+1;
+        
+        let futureDates = document.getElementsByClassName('futureDates');
+        for(let i = 0; i < futureDates.length; i++){
+            futureDates[i].innerText = `${date}/${year.toString().slice(2)}`
+        }
 
         el('visa-success').addEventListener("click",function(){copyFunc('visa-success')});
         el('visa-fail').addEventListener("click",function(){copyFunc('visa-fail')});
