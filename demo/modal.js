@@ -88,3 +88,85 @@ el('pay').addEventListener('click', function (e) {
 
     return false;    
 });
+
+
+RDP.modal.init('modal.css3.css');
+        el('paymentRef').innerText = "OID" + (new Date()).getTime();
+        el('pay').addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            el('pay').innerText = 'Processing...';
+            el('pay').classList.remove('btn-success');
+            el('pay').classList.add('btn-light');
+            el('pay').disabled = true;
+            RDP.auth('16q6glucb2o812mj6incf7vv8r', '1p9q99bp8nmdo839843n3jo43vkeg4s1cqkjtvk0jskh5kmae6bm')
+                .then(res => {
+                    console.log(res);
+                    RDP.modal.pay(
+                            res.accessToken,
+                            el('paymentRef').innerText,
+                            '7a0cb443-157d-440a-8219-017951e8cf7c',
+                            el('totalAmount').innerText.substring(1),
+                            'USD', {}
+                        )
+                        .catch(e => {
+                            console.log(e);
+                        })
+                        .finally(res => {
+                            const oid = "OID" + (new Date()).getTime();
+                            console.log("setting oid: " + oid);
+                            el('paymentRef').innerText = oid;
+                        });
+                })
+                .catch(e => {
+                    console.log(e);
+                })
+                .finally(() => {
+                    el('pay').innerText = 'Pay';
+                    el('pay').classList.add('btn-success');
+                    el('pay').classList.remove('btn-light');
+                    el('pay').disabled = false;
+                })
+            return false;
+        });
+
+        //Future Date
+        const now = new Date();
+        let year = now.getFullYear() + 2;
+        let date = now.getDate()+1;
+        
+        let futureDates = document.getElementsByClassName('futureDates');
+        for(let i = 0; i < futureDates.length; i++){
+            futureDates[i].innerText = `${date}/${year.toString().slice(2)}`
+        }
+
+        el('visa-success').addEventListener("click",function(){copyFunc('visa-success')});
+        el('visa-fail').addEventListener("click",function(){copyFunc('visa-fail')});
+        el('mastercard-success').addEventListener("click",function(){copyFunc('mastercard-success')});
+        el('mastercard-fail').addEventListener("click",function(){copyFunc('mastercard-fail')});
+        el('alipay-email').addEventListener("click",function(){copyFunc('alipay-email')});
+        
+        function copyFunc(element) {
+            //Select the text
+            var txt = document.getElementById(element).innerText
+
+            //Create a textarea to allow population of text
+            var ta = document.createElement('textarea');
+            ta.setAttribute('readonly', '');
+            ta.value = txt;
+            document.body.appendChild(ta)
+            ta.select()
+
+            //Copy the text inside the text field 
+            document.execCommand("copy");
+
+            //Remove the textarea created
+            document.body.removeChild(ta)
+
+            //Alert the copied text 
+            document.getElementById(element).innerText = "Copied!"
+            setTimeout(() => {
+                document.getElementById(element).innerText = txt
+            }, 1000);
+        }
