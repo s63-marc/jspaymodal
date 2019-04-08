@@ -186,7 +186,7 @@ const RDP = (() => {
     let modal;
 
     const lib = {
-        domain: 'https://connect.api.reddotpay.sg',
+        domain: 'https://connect2.api.reddotpay.sg',
 
         auth: (client, secret) => {
             return fetch(lib.domain + '/v1/authenticate', {
